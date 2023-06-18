@@ -18,6 +18,8 @@ public class GoJsonAPI : MonoBehaviour
         public string returnCode;
     }
 
+    public string ApiText;
+
     [System.Obsolete]
     void Start()
     {
@@ -45,6 +47,7 @@ public class GoJsonAPI : MonoBehaviour
             JsonText jsonText = JsonUtility.FromJson<JsonText>(www.downloadHandler.text);
             // JSON‚Ì’†‚Ìmessage‚ğæ‚èo‚µ
             Debug.Log(jsonText.message);
+            ApiText = jsonText.message;
         }
     }
 }
