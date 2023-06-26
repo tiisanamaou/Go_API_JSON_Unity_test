@@ -8,7 +8,9 @@ public class TextManager : MonoBehaviour
     public Text textUI;
 
     // 別のスクリプトを呼び出す
-    public GoJsonAPI goJsonAPI;
+    //[SerializeField,Tooltip("jsonファイルを入れる")]
+    [SerializeField]
+    GoJsonAPI goJsonAPI;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +27,12 @@ public class TextManager : MonoBehaviour
     public void OnPress()
     {
         Debug.Log("クリックされた");
+        //goJsonAPI = GameObject.Find("TestCube").GetComponent<GoJsonAPI>();
         //textUI.text = "Sample Text";
         //textUI.text = goJsonAPI.ApiText;
-        Debug.Log(goJsonAPI.ApiText);
+        textUI.text = goJsonAPI.GetJosonText().message;
+        //Debug.Log(goJsonAPI.ApiText);
     }
+
+
 }

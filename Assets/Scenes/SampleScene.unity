@@ -156,7 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a059f9946ff90b74ea0046c93ab0443c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ApiText: 
 --- !u!65 &117263049
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -248,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textUI: {fileID: 1933539692}
-  goJsonAPI: {fileID: 0}
+  goJsonAPI: {fileID: 117263048}
 --- !u!1 &261394168
 GameObject:
   m_ObjectHideFlags: 0

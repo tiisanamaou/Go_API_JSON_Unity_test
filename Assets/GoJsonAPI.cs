@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
+using static GoJsonAPI;
 
 public class GoJsonAPI : MonoBehaviour
 {
@@ -13,12 +14,14 @@ public class GoJsonAPI : MonoBehaviour
     [Serializable]
     public class JsonText
     {
-        public string status;
+        public int status;
         public string message;
         public string returnCode;
     }
 
-    public string ApiText;
+    //public string ApiText;
+
+    JsonText jsonText;
 
     [System.Obsolete]
     void Start()
@@ -44,10 +47,20 @@ public class GoJsonAPI : MonoBehaviour
             Debug.Log(www.downloadHandler.text);
 
             // JSONをC#オブジェクトへ変換
-            JsonText jsonText = JsonUtility.FromJson<JsonText>(www.downloadHandler.text);
+            //JsonText jsonText = JsonUtility.FromJson<JsonText>(www.downloadHandler.text);
+            jsonText = JsonUtility.FromJson<JsonText>(www.downloadHandler.text);
             // JSONの中のmessageを取り出し
             Debug.Log(jsonText.message);
-            ApiText = jsonText.message;
+            //ApiText = jsonText.message;
         }
+    }
+
+    /// <summary>
+    /// ゲッター
+    /// </summary>
+    /// <returns></returns>
+    public JsonText GetJosonText()
+    {
+        return jsonText;
     }
 }
