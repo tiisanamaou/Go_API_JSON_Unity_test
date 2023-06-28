@@ -17,6 +17,7 @@ public class GoJsonAPI : MonoBehaviour
         public int status;
         public string message;
         public string returnCode;
+        public string userData;
     }
 
     //public string ApiText;
