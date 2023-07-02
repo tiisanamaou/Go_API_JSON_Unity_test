@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 117263049}
   - component: {fileID: 117263048}
   - component: {fileID: 117263053}
+  - component: {fileID: 117263054}
   m_Layer: 0
   m_Name: TestCube
   m_TagString: Untagged
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117263047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a059f9946ff90b74ea0046c93ab0443c, type: 3}
   m_Name: 
@@ -241,13 +242,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117263047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99351fcc6a56cc4408621a236eff72e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textUI: {fileID: 1933539692}
   goJsonAPI: {fileID: 117263048}
+--- !u!114 &117263054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117263047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ba73dfcdcd8aa48b74d29169950a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &261394168
 GameObject:
   m_ObjectHideFlags: 0
