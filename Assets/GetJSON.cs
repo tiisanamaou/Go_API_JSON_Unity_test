@@ -32,7 +32,6 @@ public class GetJSON : MonoBehaviour
     [System.Obsolete]
     IEnumerator GetText()
     {
-
         UnityWebRequest www = UnityWebRequest.Get(requestURL);
         yield return www.SendWebRequest();
 

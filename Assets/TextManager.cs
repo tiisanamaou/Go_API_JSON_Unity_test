@@ -27,12 +27,9 @@ public class TextManager : MonoBehaviour
     public void OnPress()
     {
         Debug.Log("ƒNƒŠƒbƒN‚³‚ê‚½");
-        //goJsonAPI = GameObject.Find("TestCube").GetComponent<GoJsonAPI>();
         //textUI.text = "Sample Text";
         //textUI.text = goJsonAPI.ApiText;
-        textUI.text = goJsonAPI.GetJosonText().message;
+        textUI.text = goJsonAPI.GetJosonText().UserName;
         //Debug.Log(goJsonAPI.ApiText);
     }
-
-
 }

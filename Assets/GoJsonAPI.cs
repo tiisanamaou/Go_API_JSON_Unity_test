@@ -8,16 +8,21 @@ public class GoJsonAPI : MonoBehaviour
 {
 
     // URLは環境に応じて変更
-    string requestURL = "http://192.168.10.25:8080/api";
+    string requestURL = "http://192.168.10.25:8080/get";
 
     // JSON
     [Serializable]
     public class JsonText
     {
-        public int status;
-        public string message;
-        public string returnCode;
-        public string userData;
+        //public int status;
+        //public string message;
+        //public string returnCode;
+        //public string userData;
+
+        public string UserID;
+        public int UserRank;
+        public string UserName;
+
     }
 
     //public string ApiText;
@@ -34,25 +39,35 @@ public class GoJsonAPI : MonoBehaviour
     [System.Obsolete]
     IEnumerator GetText()
     {
+        // GET Method
+        var req = UnityWebRequest.Get(requestURL);
+        yield return req.SendWebRequest();
 
-        UnityWebRequest www = UnityWebRequest.Get(requestURL);
-        yield return www.SendWebRequest();
-
-        if (www.isNetworkError || www.isHttpError)
+        switch (req.result)
         {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            // 結果をテキストとして表示します
-            Debug.Log(www.downloadHandler.text);
+            case UnityWebRequest.Result.InProgress:
+            Debug.Log("リクエスト中");
+            break;
 
-            // JSONをC#オブジェクトへ変換
-            //JsonText jsonText = JsonUtility.FromJson<JsonText>(www.downloadHandler.text);
-            jsonText = JsonUtility.FromJson<JsonText>(www.downloadHandler.text);
-            // JSONの中のmessageを取り出し
-            Debug.Log(jsonText.message);
-            //ApiText = jsonText.message;
+            case UnityWebRequest.Result.Success:
+            Debug.Log("リクエスト成功");
+            Debug.Log(req.downloadHandler.text);
+            jsonText = JsonUtility.FromJson<JsonText>(req.downloadHandler.text);
+            Debug.Log(jsonText.UserName);
+            break;
+
+            case UnityWebRequest.Result.ConnectionError:
+            Debug.Log("Connection:エラー");
+            Debug.Log(req.error);
+            break;
+
+            case UnityWebRequest.Result.ProtocolError:
+            Debug.Log("Protocol:エラー");
+            break;
+
+            case UnityWebRequest.Result.DataProcessingError:
+            Debug.Log("DataProcess:エラー");
+            break;
         }
     }
 

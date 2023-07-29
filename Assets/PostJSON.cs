@@ -6,11 +6,11 @@ using UnityEngine.Networking;
 public class PostJSON : MonoBehaviour
 {
     [Serializable]
-    // POST‚·‚éƒf[ƒ^iRequest Bodyj
+    // POSTï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½iRequest Bodyï¿½j
     private sealed class Data
     {
         public int id = 25;
-        public string name = "ƒeƒXƒgƒf[ƒ^";
+        public string name = "ï¿½eï¿½Xï¿½gï¿½fï¿½[ï¿½^";
         public int loginData = 20;
     }
 
@@ -38,8 +38,6 @@ public class PostJSON : MonoBehaviour
             Debug.Log(operation.isDone);
             Debug.Log(request.downloadHandler.text);
             //Debug.Log(operation.webRequest.downloadHandler.text);
-            //Debug.Log(operation.webRequest.isHttpError);
-            //Debug.Log(operation.webRequest.isNetworkError);
         };
     }
 }
