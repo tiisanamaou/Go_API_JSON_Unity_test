@@ -6,11 +6,11 @@ using UnityEngine.Networking;
 public class PostJSON : MonoBehaviour
 {
     [Serializable]
-    // POSTï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½iRequest Bodyï¿½j
+    // POST‚·‚éƒf[ƒ^iRequest Bodyj
     private sealed class Data
     {
         public int id = 25;
-        public string name = "ï¿½eï¿½Xï¿½gï¿½fï¿½[ï¿½^";
+        public string name = "ƒeƒXƒgƒf[ƒ^";
         public int loginData = 20;
     }
 
