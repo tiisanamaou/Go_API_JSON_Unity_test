@@ -15,11 +15,11 @@ public class TextManager : MonoBehaviour
     public void OnPress()
     {
         Debug.Log("クリックされた");
-        //textUI.text = "Sample Text";
         goJsonAPIcs.GetMethod();
         // アウトレット接続
         // 1秒遅延してから関数実行
         Invoke("TextText",1.0f);
+        textUI.text = "通信中...";
     }
 
     public void TextText()

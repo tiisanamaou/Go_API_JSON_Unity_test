@@ -18,6 +18,7 @@ public class GoJsonAPI : MonoBehaviour
     }
 
     JsonRequest userJson;
+
     /// <summary>
     /// ÉQÉbÉ^Å[
     /// </summary>
@@ -30,7 +31,7 @@ public class GoJsonAPI : MonoBehaviour
     //
     void Start()
     {
-        //StartCoroutine(GetText());
+
     }
 
     public void GetMethod()
