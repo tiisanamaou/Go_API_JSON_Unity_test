@@ -4,13 +4,16 @@ Goで作成したAPIサーバーから、JSONを受け取るUnityのプログラ
 ## 開発環境
 - Go 1.20.6
 - Unity 2021.3.4f1
+- UniTask 2.3.3
 
 ## GoJsonAPI.cs
 - GETメソッド
 - UnityWebRequest.Result
 - アウトレット接続
 - ゲッター、セッター(get,set)
-- Invoke
+- ~~Invoke~~
+- UniTask
+- await/async
 
 ## PostJSON.cs
 - POSTメソッド
@@ -22,3 +25,4 @@ Goで作成したAPIサーバーから、JSONを受け取るUnityのプログラ
 - GET：https://docs.unity3d.com/ja/current/Manual/UnityWebRequest-RetrievingTextBinaryData.html
 - DownloadHandler：https://docs.unity3d.com/ja/current/ScriptReference/Networking.DownloadHandler.html
 - Result：https://docs.unity3d.com/ja/current/ScriptReference/Networking.UnityWebRequest.Result.html
+- UniTask：https://github.com/Cysharp/UniTask

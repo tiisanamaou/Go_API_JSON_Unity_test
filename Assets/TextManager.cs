@@ -18,8 +18,9 @@ public class TextManager : MonoBehaviour
         goJsonAPIcs.GetMethod();
         // アウトレット接続
         // 1秒遅延してから関数実行
-        Invoke("TextText",1.0f);
-        textUI.text = "通信中...";
+        //Invoke("TextText",1.0f);
+        //textUI.text = "通信中...";
+        TextText();
     }
 
     public void TextText()
