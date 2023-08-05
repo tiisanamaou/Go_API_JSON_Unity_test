@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -12,8 +13,11 @@ public class PostRequest : MonoBehaviour
     // POSTするデータ（Request Body）
     private sealed class Data
     {
+        //[DataMember(Name = "id")]
         public string UserID = "0005";
+        //[DataMember(Name ="rank")]
         public int UserRank = 20;
+        //[DataMember(Name ="name")]
         public string UserName = "まおまお";
     }
 
@@ -40,9 +44,21 @@ public class PostRequest : MonoBehaviour
         req.uploadHandler = new UploadHandlerRaw(postData);
         req.downloadHandler = new DownloadHandlerBuffer();
         req.SetRequestHeader("Content-Type", "application/json");
-        req.timeout = 3;
-        await req.SendWebRequest();
+        req.timeout = 10;
+        //await req.SendWebRequest();
 
+        // 例外処理
+        try
+        {
+            await req.SendWebRequest();
+        }
+        catch (UnityWebRequestException)
+        {
+            Debug.Log("例外処理：サーバーがダウンしています");
+            return;
+        }
+
+        // ステータスコード確認
         if (req.responseCode == 200)
         {
             Debug.Log("200");

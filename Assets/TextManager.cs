@@ -11,15 +11,16 @@ public class TextManager : MonoBehaviour
     //[SerializeField,Tooltip("jsonファイルを入れる")]
     [SerializeField]
     GoJsonAPI goJsonAPIcs;
+    //[SerializeField]
+    // GoJsonAPI ServerScript;
 
-    public void OnPress()
+    public async void OnPress()
     {
         Debug.Log("クリックされた");
-        goJsonAPIcs.GetMethod();
+        textUI.text = "通信中...";
+        //await goJsonAPIcs.GetMethod();
+        await goJsonAPIcs.GetRequest();
         // アウトレット接続
-        // 1秒遅延してから関数実行
-        //Invoke("TextText",1.0f);
-        //textUI.text = "通信中...";
         TextText();
     }
 

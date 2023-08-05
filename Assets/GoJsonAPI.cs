@@ -32,51 +32,13 @@ public class GoJsonAPI : MonoBehaviour
     //
     void Start()
     {
-        //var unitask = GetRequest();
-        //await unitask;
-        //await GetRequest();
+
     }
 
-    public async void GetMethod()
+    public async UniTask GetMethod()
     {
-        //StartCoroutine(GetText());
         var sss = await GetRequest();
         Debug.Log(sss);
-    }
-
-    // テキストファイルとして読み込む
-    public IEnumerator GetText()
-    {
-        // GET Method
-        var req = UnityWebRequest.Get(requestURL);
-        yield return req.SendWebRequest();
-
-        switch (req.result)
-        {
-            case UnityWebRequest.Result.InProgress:
-            Debug.Log("リクエスト中");
-            break;
-
-            case UnityWebRequest.Result.Success:
-            Debug.Log("リクエスト成功");
-            Debug.Log(req.downloadHandler.text);
-            userJson = JsonUtility.FromJson<JsonRequest>(req.downloadHandler.text);
-            Debug.Log(userJson.UserName);
-            break;
-
-            case UnityWebRequest.Result.ConnectionError:
-            Debug.Log("Connection:エラー");
-            Debug.Log(req.error);
-            break;
-
-            case UnityWebRequest.Result.ProtocolError:
-            Debug.Log("Protocol:エラー");
-            break;
-
-            case UnityWebRequest.Result.DataProcessingError:
-            Debug.Log("DataProcess:エラー");
-            break;
-        }
     }
 
     public async UniTask<string> GetRequest()

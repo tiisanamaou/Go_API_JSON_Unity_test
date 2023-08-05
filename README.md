@@ -3,7 +3,7 @@ Goで作成したAPIサーバーから、JSONを受け取るUnityのプログラ
 
 ## 開発環境
 - Go 1.20.6
-- Unity 2021.3.4f1
+- Unity 2022.3.6f1
 - UniTask 2.3.3
 
 ## GoJsonAPI.cs
