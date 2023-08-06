@@ -1,10 +1,9 @@
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GoJsonAPI : MonoBehaviour
+public class GetRequestcs : MonoBehaviour
 {
     // URLは環境に応じて変更
     string requestURL = "http://192.168.10.23:8080/get";
@@ -44,7 +43,28 @@ public class GoJsonAPI : MonoBehaviour
     public async UniTask<string> GetRequest()
     {
         var req = UnityWebRequest.Get(requestURL);
-        await req.SendWebRequest();
+        // 例外処理
+        try
+        {
+            await req.SendWebRequest();
+        }
+        catch (UnityWebRequestException)
+        {
+            Debug.Log("例外処理：サーバーがダウンしています");
+            return null;
+        }
+
+        Debug.Log(req.downloadedBytes);
+        //var header = req.GetRequestHeader("Content-Length");
+        ulong size = 0;
+        var header = req.GetRequestHeader(name: "Content-Length");
+        if (header != null)
+        {
+            ulong.TryParse(header, out size);
+        }
+        Debug.Log(header);
+        Debug.Log(size);
+
         switch (req.result)
         {
             case UnityWebRequest.Result.InProgress:

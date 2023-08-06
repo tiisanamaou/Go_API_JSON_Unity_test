@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +8,7 @@ public class TextManager : MonoBehaviour
     // 別のスクリプトを呼び出す
     //[SerializeField,Tooltip("jsonファイルを入れる")]
     [SerializeField]
-    GoJsonAPI goJsonAPIcs;
+    GetRequestcs goJsonAPIcs;
     //[SerializeField]
     // GoJsonAPI ServerScript;
 
@@ -19,12 +17,18 @@ public class TextManager : MonoBehaviour
         Debug.Log("クリックされた");
         textUI.text = "通信中...";
         //await goJsonAPIcs.GetMethod();
-        await goJsonAPIcs.GetRequest();
+        var er = await goJsonAPIcs.GetRequest();
         // アウトレット接続
-        TextText();
+
+        if (er != null)
+        {
+            DisplayText();
+            return;
+        }
+        textUI.text = "通信エラー";
     }
 
-    public void TextText()
+    public void DisplayText()
     {
         textUI.text = goJsonAPIcs.UserDataJson().UserName;
     }

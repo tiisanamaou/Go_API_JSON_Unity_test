@@ -1,9 +1,5 @@
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -29,7 +25,6 @@ public class PostRequest : MonoBehaviour
     {
         //
         await RequestJson();
-        //Debug.Log(data.UserName);
         Debug.Log(responseData);
     }
 
