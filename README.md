@@ -2,7 +2,7 @@
 Goで作成したAPIサーバーから、JSONを受け取るUnityのプログラム
 
 ## 開発環境
-- Go 1.20.7
+- Go 1.21.0
 - Unity 2022.3.6f1
 - UniTask 2.3.3
 
@@ -15,6 +15,7 @@ Goで作成したAPIサーバーから、JSONを受け取るUnityのプログラ
 - UniTask
 - await/async
 - try-catch
+- JsonUtility
 
 ## PostJSON.cs
 - POSTメソッド

@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class GetRequestcs : MonoBehaviour
 {
     // URL‚ÍŠÂ‹«‚É‰‚¶‚Ä•ÏX
-    string requestURL = "http://192.168.10.23:8080/get";
+    string requestURL = "http://192.168.10.18:8080/get";
 
     // JSON
     [Serializable]
@@ -32,12 +32,6 @@ public class GetRequestcs : MonoBehaviour
     void Start()
     {
 
-    }
-
-    public async UniTask GetMethod()
-    {
-        var sss = await GetRequest();
-        Debug.Log(sss);
     }
 
     public async UniTask<string> GetRequest()

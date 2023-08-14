@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class TextManager : MonoBehaviour
 {
     public Text textUI;
+    public Text uiUserRank;
 
     // 別のスクリプトを呼び出す
     //[SerializeField,Tooltip("jsonファイルを入れる")]
@@ -31,5 +32,19 @@ public class TextManager : MonoBehaviour
     public void DisplayText()
     {
         textUI.text = goJsonAPIcs.UserDataJson().UserName;
+    }
+
+    public async void OnPress2()
+    {
+        Debug.Log("POSTボタン");
+        uiUserRank.text = "通信中...";
+        var er = await goJsonAPIcs.GetRequest();
+
+        if (er != null)
+        {
+            uiUserRank.text = goJsonAPIcs.UserDataJson().UserID;
+            return;
+        }
+        textUI.text = "通信エラー";
     }
 }

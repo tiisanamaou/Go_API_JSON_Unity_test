@@ -23,19 +23,23 @@ public class PostRequest : MonoBehaviour
 
     private async void Start()
     {
-        //
         await RequestJson();
         Debug.Log(responseData);
     }
 
     private async UniTask RequestJson()
     {
-        var url = "http://192.168.10.23:8080/post";
+        var url = "http://192.168.10.18:8080/post";
         //var data = new Data();
         var json = JsonUtility.ToJson(data);
         byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
         //
-        UnityWebRequest req = new UnityWebRequest(url, "POST");
+        //UnityWebRequest req = new UnityWebRequest(url, "POST");
+        //
+        UnityWebRequest req = new UnityWebRequest(url);
+        req.method = "POST";
+        //req.method = "PUT";
+        //
         req.uploadHandler = new UploadHandlerRaw(postData);
         req.downloadHandler = new DownloadHandlerBuffer();
         req.SetRequestHeader("Content-Type", "application/json");
@@ -50,6 +54,10 @@ public class PostRequest : MonoBehaviour
         catch (UnityWebRequestException)
         {
             Debug.Log("例外処理：サーバーがダウンしています");
+            if (req.responseCode == 400)
+            {
+                Debug.Log("400");
+            }
             return;
         }
 
@@ -70,5 +78,14 @@ public class PostRequest : MonoBehaviour
             Debug.Log("エラー");
             Debug.Log(req.error.ToString());
         }
+    }
+
+    /// <summary>
+    /// POSTデータ・ゲッター
+    /// </summary>
+    /// <returns></returns>
+    public string PostJson()
+    {
+        return responseData;
     }
 }
