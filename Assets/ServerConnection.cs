@@ -50,32 +50,9 @@ public class ServerConnection : MonoBehaviour
         req.downloadHandler = new DownloadHandlerBuffer();
         // Method設定
         req.method = "GET";
-        // 例外処理・送信
-        try
-        {
-            await req.SendWebRequest();
-        }
-        catch (UnityWebRequestException)
-        {
-            Debug.Log("例外処理：サーバーがダウンしています");
-            return;
-        }
-        // 通信が成功したか確認
-        if (req.result != UnityWebRequest.Result.Success)
-        {
-            Debug.Log("通信エラー");
-            Debug.Log(req.error);
-            return;
-        }
         //
-        var header = req.GetResponseHeader(name: "Content-Type");
-        Debug.Log(header);
-        // DLデータ確認
-        Debug.Log(req.responseCode);
-        Debug.Log(req.downloadedBytes);
-        Debug.Log(req.downloadHandler.text);
-        // JSONデータへ変換
-        userDataJson = JsonUtility.FromJson<UserDataJson>(req.downloadHandler.text);
+        await ServerCommunication(req);
+        //
     }
 
     public async UniTask RequestPostMethod()
@@ -96,10 +73,16 @@ public class ServerConnection : MonoBehaviour
         // Method設定
         req.method = "POST";
         //
-        await Server(req);
+        await ServerCommunication(req);
+        //
     }
 
-    async UniTask Server(UnityWebRequest req)
+    /// <summary>
+    /// APIサーバーと通信する為の関数
+    /// </summary>
+    /// <param name="req"></param>
+    /// <returns></returns>
+    async UniTask ServerCommunication(UnityWebRequest req)
     {
         // 例外処理・送信
         try
@@ -115,6 +98,8 @@ public class ServerConnection : MonoBehaviour
         catch (UnityWebRequestException)
         {
             Debug.Log("例外処理：サーバーがダウンしています");
+            Debug.Log(req.result);
+            Debug.Log(req.responseCode);
             return;
         }
         // 通信が成功したか確認
@@ -133,5 +118,6 @@ public class ServerConnection : MonoBehaviour
         Debug.Log(req.downloadHandler.text);
         // JSONデータへ変換
         userDataJson = JsonUtility.FromJson<UserDataJson>(req.downloadHandler.text);
+        Debug.Log(userDataJson);
     }
 }
