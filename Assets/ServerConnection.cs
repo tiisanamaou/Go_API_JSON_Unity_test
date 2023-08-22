@@ -9,7 +9,11 @@ using UnityEngine.UI;
 public class ServerConnection : MonoBehaviour
 {
     //const string requestURL = "http://192.168.10.18:8080/get";
-    const string requestURL = "http://192.168.10.18:8080/post";
+    //const string requestURL = "http://192.168.10.18:8080/post";
+    const string requestURL = "http://192.168.10.18:8080";
+
+    const string GetRequestURL = requestURL + "/get";
+    const string PostRequestURL = requestURL + "/post";
 
     //
     public class UserDataJson
@@ -46,7 +50,7 @@ public class ServerConnection : MonoBehaviour
 
     public async UniTask RequestGetMethod()
     {
-        UnityWebRequest req = new UnityWebRequest(requestURL);
+        UnityWebRequest req = new UnityWebRequest(GetRequestURL);
         req.downloadHandler = new DownloadHandlerBuffer();
         // Methodê›íË
         req.method = "GET";
@@ -65,7 +69,7 @@ public class ServerConnection : MonoBehaviour
         var json = JsonUtility.ToJson(postUserData);
         byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
         //
-        UnityWebRequest req = new UnityWebRequest(requestURL);
+        UnityWebRequest req = new UnityWebRequest(PostRequestURL);
         req.uploadHandler = new UploadHandlerRaw(postData);
         req.downloadHandler = new DownloadHandlerBuffer();
         req.SetRequestHeader("Content-Type", "application/json");
