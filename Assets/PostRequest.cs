@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -15,6 +16,7 @@ public class PostRequest : MonoBehaviour
         public int UserRank = 20;
         //[DataMember(Name ="name")]
         public string UserName = "まおまお";
+        public string Password = "Password";
     }
 
     Data data = new Data();
@@ -72,6 +74,16 @@ public class PostRequest : MonoBehaviour
             Debug.Log("POST成功！");
             //Debug.Log(req.downloadHandler.text);
             responseData = req.downloadHandler.text;
+            //
+            ulong size = 0;
+            var header = req.GetResponseHeader("Content-Length");
+            //1フレーム目はnullが入りうるのでnullチェックをする
+            if (header != null)
+            {
+                ulong.TryParse(header, out size);
+            }
+            Debug.Log(size+"byte");
+            //
         }
         else
         {

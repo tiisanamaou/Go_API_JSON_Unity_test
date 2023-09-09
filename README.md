@@ -28,3 +28,5 @@ Goで作成したAPIサーバーから、JSONを受け取るUnityのプログラ
 - DownloadHandler：https://docs.unity3d.com/ja/current/ScriptReference/Networking.DownloadHandler.html
 - Result：https://docs.unity3d.com/ja/current/ScriptReference/Networking.UnityWebRequest.Result.html
 - UniTask：https://github.com/Cysharp/UniTask
+- Unity Content-Length：https://qiita.com/broken55/items/207a231996552358aee3
+- ResponseWriter：https://pkg.go.dev/net/http#ResponseWriter
