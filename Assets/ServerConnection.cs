@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -10,10 +11,11 @@ public class ServerConnection : MonoBehaviour
 {
     //const string requestURL = "http://192.168.10.18:8080/get";
     //const string requestURL = "http://192.168.10.18:8080/post";
-    const string requestURL = "http://192.168.10.18:8080";
+    const string requestURL = "http://192.168.10.30:8080";
 
     const string GetRequestURL = requestURL + "/get";
     const string PostRequestURL = requestURL + "/post";
+    const string LoginRequestURL = requestURL + "/login";
 
     //
     public class UserDataJson
@@ -38,7 +40,8 @@ public class ServerConnection : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        await RequestPostMethod();
+        //await RequestPostMethod();
+        await LoginRequest();
         Debug.Log("í êMèàóùäÆóπ");
     }
 
@@ -70,6 +73,34 @@ public class ServerConnection : MonoBehaviour
         byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
         //
         UnityWebRequest req = new UnityWebRequest(PostRequestURL);
+        req.uploadHandler = new UploadHandlerRaw(postData);
+        req.downloadHandler = new DownloadHandlerBuffer();
+        req.SetRequestHeader("Content-Type", "application/json");
+        req.timeout = 5;
+        // Methodê›íË
+        req.method = "POST";
+        //
+        await ServerCommunication(req);
+        //
+    }
+
+    //
+    public class LoginData
+    {
+        public string UserID;
+        public string Password;
+    }
+    LoginData loginData = new LoginData();
+    public async UniTask LoginRequest()
+    {
+        //
+        loginData.UserID = "mao";
+        loginData.Password = "12345";
+        //
+        var json = JsonUtility.ToJson(loginData);
+        byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
+        //
+        UnityWebRequest req = new UnityWebRequest(LoginRequestURL);
         req.uploadHandler = new UploadHandlerRaw(postData);
         req.downloadHandler = new DownloadHandlerBuffer();
         req.SetRequestHeader("Content-Type", "application/json");
